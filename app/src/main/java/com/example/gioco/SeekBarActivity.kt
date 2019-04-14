@@ -1,23 +1,25 @@
 package com.example.gioco
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
+import android.support.v7.app.AppCompatActivity
 import android.widget.SeekBar
-import kotlinx.android.synthetic.main.activity_main.*
+import android.widget.TextView
 
+class SeekBarActivity : AppCompatActivity() {
 
-class MainActivity : AppCompatActivity() {
+    lateinit var slider : SeekBar
+    lateinit var value : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        slider = findViewById(R.id.SeekBar) as SeekBar
+        value = findViewById(R.id.div_count) as TextView
 
-        val seekbar=findViewById<View>(R.id.SeekBar) as SeekBar
-        seekbar.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener{
+        slider.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener{
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                div_count.text= progress.toString()
+                value.text= progress.toString()
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
@@ -28,6 +30,4 @@ class MainActivity : AppCompatActivity() {
 
         })
     }
-
-
 }

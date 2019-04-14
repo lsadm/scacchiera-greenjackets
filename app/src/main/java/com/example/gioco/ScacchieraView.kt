@@ -6,10 +6,11 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Rect
 import android.util.AttributeSet
-import android.view.MotionEvent
 import android.view.View
-import android.widget.SeekBar
-import android.widget.SeekBar.OnSeekBarChangeListener
+import android.widget.TextView
+import kotlinx.android.synthetic.main.activity_main.view.*
+import org.w3c.dom.Text
+
 
 class ScacchieraView: View {
 
@@ -23,13 +24,16 @@ class ScacchieraView: View {
 
 
 
+
+    var tv = findViewById<View>(R.id.div_count) as TextView
+    var div_t=tv.text
+    
+
+
     override fun onDraw(canvas: Canvas?) {  //il canvas è la nostra tela quindi oltre non possiamo andare,attenzione
         super.onDraw(canvas)
-
+        var div= div_t.toInt()
         canvas?.getClipBounds(schermo)        // mi prende la dimensione dello schermo con ClipBounds
-
-        var div = SeekBar.OnSeekBarChangeListener(this)
-
 
         Nero.color= Color.BLACK     //Posso settare il colore del pennello solo in onDraw
         Bianco.color = Color.WHITE
@@ -59,7 +63,11 @@ class ScacchieraView: View {
 
 
 
+
     }
+
+
+
 
 
 /*
@@ -75,6 +83,10 @@ class ScacchieraView: View {
 
 
 
+
+}
+
+private fun CharSequence.toInt(): Int {
 
 }
 

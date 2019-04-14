@@ -2,5 +2,6 @@
     <string name="app_name">Gioco</string>
     <string name="Play">Gioca</string>
     <string name="Wins">Vittorie</string>
-    <string name="Divisions">Division</string>
+    <string name="Divisions" translatable="false">Divisioni</string>
+    <string name="Steps">Mosse:</string>
 </resources>
