@@ -9,6 +9,7 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
 import android.widget.SeekBar
+import android.widget.SeekBar.OnSeekBarChangeListener
 
 class ScacchieraView: View {
 
@@ -16,22 +17,52 @@ class ScacchieraView: View {
     constructor(context:Context, attrs: AttributeSet?) : super(context,attrs, 0)
 
 
+    var schermo = Rect()
+    val Nero = Paint()
+    val Bianco = Paint()
+
 
 
     override fun onDraw(canvas: Canvas?) {  //il canvas è la nostra tela quindi oltre non possiamo andare,attenzione
         super.onDraw(canvas)
-         var casella=Rect(100,100,200,200)
-         var paint = Paint()
-         var schermo = Rect()
+
         canvas?.getClipBounds(schermo)        // mi prende la dimensione dello schermo con ClipBounds
 
-        paint.color= Color.GREEN // è il pennello
-        canvas?.drawRect(casella,paint) //dice dipingi sulla casella con il pennello.Mettere il ? per sicurezza.
+        var div = SeekBar.OnSeekBarChangeListener(this)
+
+
+        Nero.color= Color.BLACK     //Posso settare il colore del pennello solo in onDraw
+        Bianco.color = Color.WHITE
+
+
+        var dx = (schermo.right-schermo.left)/div
+        var dy = (schermo.bottom-schermo.top)/div
+
+
+        for (i in 0..div){
+            for (j in 0..div){
+                var left = schermo.left+j*dx        //calcolo iterativamente la posizione nei for
+                var right = left + dx
+                var top = schermo.top+i*dy
+                var bottom = top + dy
+
+                var casella = Rect(left,top,right,bottom)       //crea la casella nella posizione corretta
+
+                if((i+j)%2==0)
+                    canvas?.drawRect(casella, Nero)        //dice dipingi sulla casella con il pennello.Mettere il ? per sicurezza.
+                else
+                    canvas?.drawRect(casella, Bianco)
+            }
+
+        }
+
+
+
 
     }
 
 
-
+/*
     override fun onTouchEvent(event: MotionEvent?): Boolean {
 
         return super.onTouchEvent(event)   //in event c'è il significato del tocco
@@ -40,23 +71,11 @@ class ScacchieraView: View {
             var y = event?.y
         }
     }
+*/
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-            }
+}
 
 
