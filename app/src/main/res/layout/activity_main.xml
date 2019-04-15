@@ -11,11 +11,11 @@
             style="@style/Widget.AppCompat.SeekBar.Discrete"
             android:layout_width="139dp"
             android:layout_height="38dp"
-            android:max="8"
+            android:max="6"
             android:id="@+id/SeekBar"
-            app:layout_constraintTop_toTopOf="@+id/t_divisions"
             app:layout_constraintStart_toEndOf="@+id/t_divisions" android:layout_marginStart="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/t_divisions"/>
+            app:layout_constraintBottom_toBottomOf="@+id/t_divisions"
+            app:layout_constraintTop_toTopOf="@+id/t_divisions"/>
     <TextView
             android:text="@string/Divisions"
             android:layout_height="21dp"
@@ -44,7 +44,7 @@
             android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/t_wins"/>
     <view android:layout_width="0dp" android:layout_height="0dp"
           class="com.example.gioco.ScacchieraView"
-          id="@+id/view2" app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintBottom_toBottomOf="parent"
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintEnd_toEndOf="parent"
           android:layout_marginTop="32dp" app:layout_constraintTop_toBottomOf="@+id/Gioca"

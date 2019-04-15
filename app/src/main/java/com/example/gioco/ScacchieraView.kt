@@ -21,18 +21,15 @@ class ScacchieraView: View {
     var schermo = Rect()
     val Nero = Paint()
     val Bianco = Paint()
-
-
-
-
-    var tv = findViewById<View>(R.id.div_count) as TextView
-    var div_t=tv.text
-    
+    var divisions =2
 
 
     override fun onDraw(canvas: Canvas?) {  //il canvas è la nostra tela quindi oltre non possiamo andare,attenzione
         super.onDraw(canvas)
-        var div= div_t.toInt()
+
+        var div = divisions
+
+
         canvas?.getClipBounds(schermo)        // mi prende la dimensione dello schermo con ClipBounds
 
         Nero.color= Color.BLACK     //Posso settare il colore del pennello solo in onDraw
@@ -62,8 +59,6 @@ class ScacchieraView: View {
 
 
 
-
-
     }
 
 
@@ -86,8 +81,5 @@ class ScacchieraView: View {
 
 }
 
-private fun CharSequence.toInt(): Int {
-
-}
 
 
