@@ -13,9 +13,7 @@
             android:layout_height="38dp"
             android:max="6"
             android:id="@+id/SeekBar"
-            app:layout_constraintStart_toEndOf="@+id/t_divisions" android:layout_marginStart="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/t_divisions"
-            app:layout_constraintTop_toTopOf="@+id/t_divisions"/>
+            tools:layout_editor_absoluteY="16dp" tools:layout_editor_absoluteX="82dp"/>
     <TextView
             android:text="@string/Divisions"
             android:layout_height="21dp"

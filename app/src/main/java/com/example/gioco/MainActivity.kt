@@ -13,6 +13,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
+
     var div: Int = 2            //valore iniizale delle divisioni quando si apre l'app
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,9 +26,10 @@ class MainActivity : AppCompatActivity() {
 
         seekbar.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener{
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) { //cose da fare quando cambia il valore
-                div=progress+2
+                div=progress+2              //setto il minimo della seekbar a 2, visto che parte da 0
                 div_count.text= div.toString()
                 vScacchiera.divisions=div
+
             }
             override fun onStartTrackingTouch(seekBar: SeekBar?) {}         //devo per forza fare l'ovveride, anche se non le specifico
             override fun onStopTrackingTouch(seekBar: SeekBar?) {}

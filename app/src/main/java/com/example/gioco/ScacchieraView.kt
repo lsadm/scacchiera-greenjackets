@@ -21,7 +21,7 @@ class ScacchieraView: View {
     var schermo = Rect()
     val Nero = Paint()
     val Bianco = Paint()
-    var divisions =2
+    var divisions =2        //ho lasciato divisions fuori per renderla accessibile dalla main activity
 
 
     override fun onDraw(canvas: Canvas?) {  //il canvas è la nostra tela quindi oltre non possiamo andare,attenzione
@@ -29,16 +29,13 @@ class ScacchieraView: View {
 
         var div = divisions
 
-
         canvas?.getClipBounds(schermo)        // mi prende la dimensione dello schermo con ClipBounds
 
         Nero.color= Color.BLACK     //Posso settare il colore del pennello solo in onDraw
         Bianco.color = Color.WHITE
 
-
         var dx = (schermo.right-schermo.left)/div
         var dy = (schermo.bottom-schermo.top)/div
-
 
         for (i in 0..div){
             for (j in 0..div){
