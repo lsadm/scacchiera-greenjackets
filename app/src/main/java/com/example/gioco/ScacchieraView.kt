@@ -7,6 +7,7 @@ import android.graphics.Paint
 import android.graphics.Rect
 import android.util.AttributeSet
 import android.view.View
+import kotlinx.android.synthetic.main.activity_main.view.*
 import java.lang.Math.floor
 
 
@@ -26,11 +27,12 @@ class ScacchieraView: View {
     var dx=2
     var dy=2
 
-
+    var init: Int=1
 
 
     override fun onDraw(canvas: Canvas?) {  //il canvas è la nostra tela quindi oltre non possiamo andare,attenzione
         super.onDraw(canvas)
+
 
         canvas?.getClipBounds(schermo)        // mi prende la dimensione dello schermo con ClipBounds
 
@@ -40,12 +42,11 @@ class ScacchieraView: View {
         dx = (schermo.right-schermo.left)/div
         dy = (schermo.bottom-schermo.top)/div
 
-        inizializzaMat(canvas)
-
-    }
-
-
-    fun inizializzaMat(canvas: Canvas?){
+        if (init==1){
+            var updated_matrix=Matrice<Boolean>(div,div)//Devo lasciarlo per aggiornare la nuova matrice!
+            mat=updated_matrix
+            inizializzaMat()
+            init=0}
 
         for (i in 0..div-1){
             for (j in 0..div-1){
@@ -56,14 +57,11 @@ class ScacchieraView: View {
 
                 var casella = Rect(left,top,right,bottom)       //crea la casella nella posizione corretta
 
-                if((i+j)%2==0){
-                    canvas?.drawRect(casella, Nero)        //dice dipingi sulla casella con il pennello.Mettere il ? per sicurezza.
-                    mat[i,j]=true   // nero è associato a vero
-                }
+                if(mat[i,j]==true) {     //nero è vero
+                    canvas?.drawRect(casella, Nero) }       //dice dipingi sulla casella con il pennello.Mettere il ? per sicurezza.
                 else {
-                    canvas?.drawRect(casella, Bianco)
-                    mat[i,j]=false                          //bianco è associato a falso
-                }
+                    canvas?.drawRect(casella, Bianco)}
+
             }
 
         }// for di prima costruzione
@@ -72,24 +70,33 @@ class ScacchieraView: View {
 
 
 
+    fun inizializzaMat(){
 
-/*
+        for (i in 0..div-1){
+            for (j in 0..div-1) {
+                if((i+j)%2==0)
+                    mat[i,j]=true   // nero è associato a vero
+                else
+                    mat[i,j]=false
+                }
+            }
+    }
+
+
   fun AggiornaCasella(){
 
-      //x,y,matrix
-
-      var i = x/dx
-      var j = y/dy
-      if(matrix[i,j]=true)
-      matrix[i,j]=false //bianco
+      var j = x/dx
+      var i = y/dy
+      if(this.mat[i,j]==true)
+      this.mat[i,j]=false //bianco
       else
-          matrix[i,j]=true //nero
+          this.mat[i,j]=true //nero
 
 
 
   }
 
-*/
+
 
 }
 

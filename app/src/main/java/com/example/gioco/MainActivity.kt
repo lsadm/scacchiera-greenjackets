@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
 
     var div: Int = 2            //valore iniizale delle divisioni quando si apre l'app
-
+    var nmosse: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,8 +41,11 @@ class MainActivity : AppCompatActivity() {
         val play = findViewById<View>(R.id.Gioca) as Button //eventi da eseguire quando premo "Gioca"
         play.setOnClickListener{
             Toast.makeText(this@MainActivity, "Stai giocando con "+div+" divisioni", Toast.LENGTH_SHORT).show()
+            vScacchiera.init=1
             vScacchiera.invalidate()        //Serve per invalidare la view e forzare la chiamata del metodo onDraw di ScacchieraView
             mosse.text= 0.toString()
+            nmosse=0
+
 
         }
 
@@ -57,7 +60,10 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(this@MainActivity, "X: "+x+" Y: "+y, Toast.LENGTH_SHORT).show()
                     vScacchiera.x=x
                     vScacchiera.y=y
-
+                    vScacchiera.AggiornaCasella()
+                    vScacchiera.invalidate()
+                    nmosse++
+                    mosse.text=nmosse.toString()
 
                 }
             }
