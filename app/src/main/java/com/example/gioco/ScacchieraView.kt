@@ -7,9 +7,7 @@ import android.graphics.Paint
 import android.graphics.Rect
 import android.util.AttributeSet
 import android.view.View
-import android.widget.TextView
-import kotlinx.android.synthetic.main.activity_main.view.*
-import org.w3c.dom.Text
+import java.lang.Math.floor
 
 
 class ScacchieraView: View {
@@ -22,6 +20,13 @@ class ScacchieraView: View {
     val Nero = Paint()
     val Bianco = Paint()
     var divisions =2        //ho lasciato divisions fuori per renderla accessibile dalla main activity
+    var x=1
+    var y=1
+    var matrix=Matrice<Boolean>(divisions,divisions) // TODO: cercare un metodo per non dichiarare la matrice fuori dall'onDraw
+    var dx1=2
+    var dy1=2
+
+
 
 
     override fun onDraw(canvas: Canvas?) {  //il canvas è la nostra tela quindi oltre non possiamo andare,attenzione
@@ -29,6 +34,7 @@ class ScacchieraView: View {
 
         var div = divisions
         var mat= Matrice<Boolean>(divisions,divisions)// dichiarazione matrice di booleani
+        matrix=mat  //TODO: stesso todo di sopra
 
 
         canvas?.getClipBounds(schermo)        // mi prende la dimensione dello schermo con ClipBounds
@@ -38,6 +44,8 @@ class ScacchieraView: View {
 
         var dx = (schermo.right-schermo.left)/div
         var dy = (schermo.bottom-schermo.top)/div
+        dx1=dx
+        dy1=dy
 
         for (i in 0..div-1){
             for (j in 0..div-1){
@@ -58,7 +66,15 @@ class ScacchieraView: View {
                 }
             }
 
-        }
+        }// for di prima costruzione
+
+
+
+
+
+
+
+        aggiornacasella()
 
 
 
@@ -68,17 +84,24 @@ class ScacchieraView: View {
 
 
 
-/*
-    override fun onTouchEvent(event: MotionEvent?): Boolean {
+  fun AggiornaCasella(){
 
-        return super.onTouchEvent(event)   //in event c'è il significato del tocco
-        if(event?.action==MotionEvent.ACTION_UP) {     //MotionEvent ha molti metodi ! L'evento ha l'info action, a noi interessa l'action UP
-            var x = event?.x          // Action Up legge quando il dito se ne va
-            var y = event?.y
-        }
-    }
-*/
+      //x,y,matrix
 
+      var i = x/dx1
+      var j = y/dy1
+      if(matrix[i,j]=true)
+      matrix[i,j]=false //bianco
+      else
+          matrix[i,j]=true //nero
+
+
+
+
+
+
+
+  }
 
 
 

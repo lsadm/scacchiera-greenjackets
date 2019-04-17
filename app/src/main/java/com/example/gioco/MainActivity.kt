@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
 
     var div: Int = 2            //valore iniizale delle divisioni quando si apre l'app
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -54,6 +55,9 @@ class MainActivity : AppCompatActivity() {
                     var x = motionEvent.x.toInt()
                     var y = motionEvent.y.toInt()
                     Toast.makeText(this@MainActivity, "X: "+x+" Y: "+y, Toast.LENGTH_SHORT).show()
+                    vScacchiera.x=x
+                    vScacchiera.y=y
+
 
                 }
             }
