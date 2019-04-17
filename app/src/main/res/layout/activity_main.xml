@@ -13,7 +13,10 @@
             android:layout_height="38dp"
             android:max="6"
             android:id="@+id/SeekBar"
-            tools:layout_editor_absoluteY="16dp" tools:layout_editor_absoluteX="82dp"/>
+            app:layout_constraintStart_toEndOf="@+id/t_divisions"
+            android:layout_marginStart="8dp"
+            app:layout_constraintTop_toTopOf="@+id/t_divisions"
+            app:layout_constraintBottom_toBottomOf="@+id/t_divisions"/>
     <TextView
             android:text="@string/Divisions"
             android:layout_height="21dp"
@@ -60,7 +63,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/mosse" app:layout_constraintStart_toEndOf="@+id/t_mosse"
-            android:layout_marginStart="16dp" app:layout_constraintBaseline_toBaselineOf="@+id/t_mosse"/>
+            android:layout_marginStart="24dp" app:layout_constraintBaseline_toBaselineOf="@+id/t_mosse"/>
     <TextView
             android:text="2"
             android:layout_width="wrap_content"

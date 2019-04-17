@@ -19,12 +19,12 @@ class ScacchieraView: View {
     var schermo = Rect()
     val Nero = Paint()
     val Bianco = Paint()
-    var divisions =2        //ho lasciato divisions fuori per renderla accessibile dalla main activity
+    var div:Int =2        //ho lasciato divisions fuori per renderla accessibile dalla main activity
     var x=1
     var y=1
-    var matrix=Matrice<Boolean>(divisions,divisions) // TODO: cercare un metodo per non dichiarare la matrice fuori dall'onDraw
-    var dx1=2
-    var dy1=2
+    var mat=Matrice<Boolean>(div,div)
+    var dx=2
+    var dy=2
 
 
 
@@ -32,20 +32,20 @@ class ScacchieraView: View {
     override fun onDraw(canvas: Canvas?) {  //il canvas è la nostra tela quindi oltre non possiamo andare,attenzione
         super.onDraw(canvas)
 
-        var div = divisions
-        var mat= Matrice<Boolean>(divisions,divisions)// dichiarazione matrice di booleani
-        matrix=mat  //TODO: stesso todo di sopra
-
-
         canvas?.getClipBounds(schermo)        // mi prende la dimensione dello schermo con ClipBounds
 
         Nero.color= Color.BLACK     //Posso settare il colore del pennello solo in onDraw
         Bianco.color = Color.WHITE
 
-        var dx = (schermo.right-schermo.left)/div
-        var dy = (schermo.bottom-schermo.top)/div
-        dx1=dx
-        dy1=dy
+        dx = (schermo.right-schermo.left)/div
+        dy = (schermo.bottom-schermo.top)/div
+
+        inizializzaMat(canvas)
+
+    }
+
+
+    fun inizializzaMat(canvas: Canvas?){
 
         for (i in 0..div-1){
             for (j in 0..div-1){
@@ -59,7 +59,7 @@ class ScacchieraView: View {
                 if((i+j)%2==0){
                     canvas?.drawRect(casella, Nero)        //dice dipingi sulla casella con il pennello.Mettere il ? per sicurezza.
                     mat[i,j]=true   // nero è associato a vero
-                     }
+                }
                 else {
                     canvas?.drawRect(casella, Bianco)
                     mat[i,j]=false                          //bianco è associato a falso
@@ -68,28 +68,18 @@ class ScacchieraView: View {
 
         }// for di prima costruzione
 
-
-
-
-
-
-
-        aggiornacasella()
-
-
-
     }
 
 
 
 
-
+/*
   fun AggiornaCasella(){
 
       //x,y,matrix
 
-      var i = x/dx1
-      var j = y/dy1
+      var i = x/dx
+      var j = y/dy
       if(matrix[i,j]=true)
       matrix[i,j]=false //bianco
       else
@@ -97,13 +87,9 @@ class ScacchieraView: View {
 
 
 
-
-
-
-
   }
 
-
+*/
 
 }
 
