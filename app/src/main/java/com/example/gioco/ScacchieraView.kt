@@ -85,12 +85,31 @@ class ScacchieraView: View {
 
   fun AggiornaCasella(){
 
-      var j = x/dx
-      var i = y/dy
-      if(this.mat[i,j]==true)
-      this.mat[i,j]=false //bianco
-      else
-          this.mat[i,j]=true //nero
+      val j = x/dx  //colonna
+      val i = y/dy   //riga
+      var index=0
+
+
+      for(index in 0..div-1){   //inverto la riga
+
+          if(mat[index,j]==true)
+              mat[index,j]=false
+          else
+              mat[index,j]=true
+
+      }
+
+        index=0
+
+      for(index in 0..div-1){   //inverto la riga
+
+          if(mat[i,index]==true)
+              mat[i,index]=false
+          else
+              mat[i,index]=true
+
+      }
+
 
 
 
