@@ -30,6 +30,7 @@ class ScacchieraView: View {
     var init: Int=1
 
 
+
     override fun onDraw(canvas: Canvas?) {  //il canvas è la nostra tela quindi oltre non possiamo andare,attenzione
         super.onDraw(canvas)
 
@@ -87,7 +88,6 @@ class ScacchieraView: View {
 
       val j = x/dx  //colonna
       val i = y/dy   //riga
-      var index=0
 
 
       for(index in 0..div-1){   //inverto la riga
@@ -99,9 +99,9 @@ class ScacchieraView: View {
 
       }
 
-        index=0
 
-      for(index in 0..div-1){   //inverto la riga
+
+      for(index in 0..div-1){   //inverto la colonna
 
           if(mat[i,index]==true)
               mat[i,index]=false
@@ -116,6 +116,29 @@ class ScacchieraView: View {
   }
 
 
+
+
+    fun checkwin():Int{
+
+        var totale=0
+        for(i in 0..div-1){
+            for(j in 0..div-1){
+                if(mat[i,j]==true)
+                    totale=totale+1  // serve per il controllo
+
+            }//primo for
+        }//secondo for
+
+       if(totale==div*div){
+           return 1
+
+       }
+        else{
+           return 0
+       }
+
+
+    }
 
 }
 

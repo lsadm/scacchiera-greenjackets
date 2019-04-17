@@ -17,6 +17,8 @@ class MainActivity : AppCompatActivity() {
 
     var div: Int = 2            //valore iniizale delle divisioni quando si apre l'app
     var nmosse: Int = 0
+    var win: Int =0
+    var check: Int=0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +27,9 @@ class MainActivity : AppCompatActivity() {
         val mosse = findViewById<View>(R.id.mosse) as TextView
 
         val seekbar=findViewById<View>(R.id.SeekBar) as SeekBar     //da qui inizia la lettura dei valori della seekbar
+
+        val wins=findViewById<View>(R.id.Vittorie) as TextView
+        wins.text=win.toString()
 
         seekbar.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener{
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) { //cose da fare quando cambia il valore
@@ -57,13 +62,25 @@ class MainActivity : AppCompatActivity() {
                 MotionEvent.ACTION_UP -> {       // Action up indica il rilascio del dito
                     var x = motionEvent.x.toInt()
                     var y = motionEvent.y.toInt()
-                    Toast.makeText(this@MainActivity, "X: "+x+" Y: "+y, Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(this@MainActivity, "X: "+x+" Y: "+y, Toast.LENGTH_SHORT).show()
                     vScacchiera.x=x
                     vScacchiera.y=y
                     vScacchiera.AggiornaCasella()
                     vScacchiera.invalidate()
                     nmosse++
                     mosse.text=nmosse.toString()
+                    check=vScacchiera.checkwin()
+                    if(check==1){
+                        win++
+                        wins.text=win.toString()
+                        Toast.makeText(this@MainActivity, "Complimenti, hai vinto!", Toast.LENGTH_SHORT).show()
+                        vScacchiera.init=1
+                        nmosse=0
+                        mosse.text=nmosse.toString()
+                        vScacchiera.invalidate()
+                    }
+
+
 
                 }
             }
