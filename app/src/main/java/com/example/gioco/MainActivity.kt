@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) { //cose da fare quando cambia il valore
                 div=progress+2              //setto il minimo della seekbar a 2, visto che parte da 0
                 div_count.text= div.toString()
-                vScacchiera.div=div
+                vScacchiera.divisions=div
 
             }
             override fun onStartTrackingTouch(seekBar: SeekBar?) {}         //devo per forza fare l'ovveride, anche se non le specifico
@@ -42,13 +42,15 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this@MainActivity, "Stai giocando con "+div+" divisioni", Toast.LENGTH_SHORT).show()
             vScacchiera.invalidate()        //Serve per invalidare la view e forzare la chiamata del metodo onDraw di ScacchieraView
             mosse.text= 0.toString()
+
         }
 
 
         vScacchiera.setOnTouchListener(View.OnTouchListener { _, motionEvent ->
-            when (motionEvent.action){
+            when (motionEvent.action){    // MotionEvent è la variabile che contiene l'azione
 
-                MotionEvent.ACTION_UP -> {
+
+                MotionEvent.ACTION_UP -> {       // Action up indica il rilascio del dito
                     var x = motionEvent.x.toInt()
                     var y = motionEvent.y.toInt()
                     Toast.makeText(this@MainActivity, "X: "+x+" Y: "+y, Toast.LENGTH_SHORT).show()
@@ -57,6 +59,10 @@ class MainActivity : AppCompatActivity() {
             }
             return@OnTouchListener true
         })
+
+
+
+
 
 
     }
